@@ -1,0 +1,257 @@
+1. Steps to create a Virtual Environment
+    >> Step 1: python --version
+    This will shows the python version
+    >> steps to create a virtual environment for python3:
+        bash: python3 -m venv .venv
+        bash: source .venv/bin/activate 
+        ( This will create a virtual environment and activate it: Note you will see the (.venv in your terminal starting))
+
+2. Steps to install all the necessary setups:
+    . Install Python
+
+PythonInstalation Phase one
+>> Go to terminal check your version
+>>Type: python3>> it should give your current version
+>>Else
+>>Type: sudo apt update
+Problem Encountered: 
+Reading package lists... Done
+E: Release file for http://security.ubuntu.com/ubuntu/dists/jammy-security/InRelease is not valid yet (invalid for another 5h 19min 22s). Updates for this repository will not be applied.
+E: Release file for http://us.archive.ubuntu.com/ubuntu/dists/jammy-updates/InRelease is not valid yet (invalid for another 5h 20min 55s). Updates for this repository will not be applied.
+)
+This problem is because of system time
+
+So Solution:
+>> date
+>>sudo date MMDDhhmmYYYY
+>>Go to terminal>> Type : date
+>> sudo date 090615302024 if current date is like Sept 06, 15:36 , 2024)
+>>sudo apt update>> 
+
+All set to go to phase 2 
+
+Python Installation Phase 2
+>>sudo apt install software-properties-common
+>>sudo add-apt-repository ppa:deadsnakes/ppa
+>>sudo apt update
+>>sudo apt install python3.11>> Yes
+>>python3.11 >> you need to able to acess python on terminal
+>>print(3+4)>>exit()
+
+Add all libraries to the environment:
+
+>>sudo apt install python3.11-dev python3.11-venv python3.11-distutils python3.11-gdbm python3.11-tk python3.11-lib2to3
+
+
+Check: 
+>> python3 --version
+
+Install Pip
+
+>>sudo apt install python3-pip
+>>pip3 --version
+
+
+
+2. VSCode Installation Guide:
+
+>>https://code.visualstudio.com/
+>> Download .deb version for ubuntu
+>> Go to Terminal Or press Ctrl+Alt+T
+>>cd Downloads/
+>>ls>> sudo dpkg -i code_1.93.0-1725459079_amd64.deb >>Press Enter>> Password if asked>>Yes
+>>code>> Open Vscode>> Do all necessary setups
+
+
+
+
+
+
+
+3. GPU - Gegoce RTX 3090, download and install CUDA
+Installation Guide 1:
+
+>> Go to terminal check your linux version
+>>Type: uname -a>> Give you your processor verison >> x86_64 VERSION AVAILABLE FOR ME
+>> GO TO any of broswer and type >> https://developer.download.nvidia.com/compute/cuda/12.6.1/local_installers/cuda_12.6.1_560.35.03_linux.run
+>wget https://developer.download.nvidia.com/compute/cuda/12.6.1/local_installers/cuda_12.6.1_560.35.03_linux.run
+>>sudo sh cuda_12.6.1_560.35.03_linux.run
+>>accept
+>>uncheck Driver>> and hit install>. will take time>. will show a summary
+>>cd /usr/local/cuda-12.6/bin
+
+Check Version
+>>./nvcc --version >> should give you summary oc cucda version
+
+
+
+./
+4. Download and install PyTorch
+https://pytorch.org/get-started/locally/ --> to choose the right config
+Stable 2.4.1
+Linyx
+Pip
+Python
+CUDA12.4
+(I installed Cuda 12.6 version , so less than this version should be compatible)
+
+Run command in cmd:
+pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+
+Check: 
+>> python3
+>> import torch
+>>torch.cuda.is_available()
+>>torch.cuda.device_count()
+>>torch.cuda.current_device()
+>>torch.cuda.device(0)
+>>torch.cuda.get_device_name(0)
+
+
+If error with this- driver might not be available- I use CUDA 11.6 version so I had to unistall all cuda and redo all steps 3
+>>nvidia-smi( error- No driver available)
+Need tdo below steps
+
+>>sudo apt-get --purge remove "*cublas*" "cuda*" "nsight*" 
+>>sudo apt-get autoremove
+>>sudo apt-get autoclean
+
+>>sudo rm -rf /usr/local/cuda*
+>>sudo add-apt-repository ppa:graphics-drivers/ppa
+>>sudo apt update
+
+>>ubuntu-drivers devices
+>>sudo apt install nvidia-driver-XXX>> XXX=560
+>>sudo reboot
+>>nvidia-smi
+
+(Solved with above command--nvidia-sml available)
+
+>> 
+Now redoing step 3 with Cuda 11.8
+
+>> Go to terminal check your linux version
+>>Type: uname -a>> Give you your processor verison >> x86_64 VERSION AVAILABLE FOR ME
+>> GO TO any of broswer and type >> https://developer.nvidia.com/cuda-11-8-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=runfile_local
+>wget https://developer.download.nvidia.com/compute/cuda/12.6.1/local_installers/cuda_12.6.1_560.35.03_linux.run
+>>wget https://developer.download.nvidia.com/compute/cuda/11.8.0/local_installers/cuda_11.8.0_520.61.05_linux.run
+>>sudo sh cuda_11.8.0_520.61.05_linux.run
+>>accept
+>>uncheck Driver>> and hit install>. will take time>. will show a summary
+>>cd /usr/local/cuda-12.6/bin
+
+
+(Note: try to have a compatible version of cuda and pytorch)
+Note: After choosing cuda 11.8 and pytorch for 11.8 things worked
+
+>> Go to VSTerminal>> Select in Right top corner>> Run Python in dedicated Terminal>> Will create a virtual Environment
+>>Terminal of VScode
+>>Python3 --version
+>>sudo apt install python3-pip
+>>pip3 --version
+>>pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+
+
+Steps to install Ultralytics:
+
+
+5. Install the ultralytics package from PyPI. Run command:
+pip3 install ultralytics
+
+
+Or Install the ultralytics package from GitHub. 
+(Need to download and install Git 64-bit Window: https://git-scm.com/download/win)
+Run command: 
+pip install git+https://github.com/ultralytics/ultralytics.git@main
+pip install git+https://github.com/facebookresearch/segment-anything.git
+
+Check:
+>> yolo settings
+
+
+.....................................................................................................
+1. Install Python
+
+PythonInstalation Phase one
+>> Go to terminal check your version
+>>Type: python3>> it should give your current version
+>>Else
+>>Type: sudo apt update
+Problem Encountered: 
+Reading package lists... Done
+E: Release file for http://security.ubuntu.com/ubuntu/dists/jammy-security/InRelease is not valid yet (invalid for another 5h 19min 22s). Updates for this repository will not be applied.
+E: Release file for http://us.archive.ubuntu.com/ubuntu/dists/jammy-updates/InRelease is not valid yet (invalid for another 5h 20min 55s). Updates for this repository will not be applied.
+)
+This problem is because of system time
+
+So Solution:
+>> date
+>>sudo date MMDDhhmmYYYY
+>>Go to terminal>> Type : date
+>> sudo date 090615302024 if current date is like Sept 06, 15:36 , 2024)
+>>sudo apt update>> 
+
+All set to go to phase 2 
+
+Python Installation Phase 2
+>>sudo apt install software-properties-common
+>>sudo add-apt-repository ppa:deadsnakes/ppa
+>>sudo apt update
+>>sudo apt install python3.11>> Yes
+>>python3.11 >> you need to able to acess python on terminal
+>>print(3+4)>>exit()
+
+Add all libraries to the environment:
+
+>>sudo apt install python3.11-dev python3.11-venv python3.11-distutils python3.11-gdbm python3.11-tk python3.11-lib2to3
+
+
+
+
+Note: 
+Do all this set up you still get error for ultralytics not found!!!
+Create a virtual Environment to run all environments. It should work properly
+
+Steps to create own venv
+Open terminal in VSCODE
+
+>>python --version
+>>sudo apt update
+>>sudo apt install python3-venv
+>>python3 -m venv venv
+>>sudo apt install python3-pip
+>>sudo apt install python3-dev
+>>source venv/bin/activate
+
+
+(Note: try to have a compatible version of cuda and pytorch)
+Note: After choosing cuda 11.8 and pytorch for 11.8 things worked
+
+>> Go to VSTerminal>> Select in Right top corner>> Run Python in dedicated Terminal>> Will create a virtual Environment
+>>Terminal of VScode
+>>Python3 --version
+>>sudo apt -install python3-pip
+>>pip3 --version
+>>pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+
+
+Steps to install Ultralytics:
+
+
+5. Install the ultralytics package from PyPI. Run command:
+pip3 install ultralytics
+
+
+Or Install the ultralytics package from GitHub. 
+(Need to download and install Git 64-bit Window: https://git-scm.com/download/win)
+Run command: 
+pip install git+https://github.com/ultralytics/ultralytics.git@main
+pip install git+https://github.com/facebookresearch/segment-anything.git
+
+
+
+Command 'nvcc' not found, but can be installed with:
+
+sudo apt install nvidia-cuda-toolkit
+nvidia-smi
+sudo apt install nvidia-utils-535>>Y
